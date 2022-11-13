@@ -22,9 +22,20 @@ module.exports = appInfo => {
   const userConfig = {
     // myAppName: 'egg',
   };
+  config.cors = {
+    
+  }
+//   const mongoose = {
+//     client: {
+//         url: 'mongodb://127.0.0.1:27017/product1',
+//         options: {}
+//     }
+// };
 
+// console.log('ddd', mongoose)
   return {
     ...config,
     ...userConfig,
+    // ...mongoose
   };
 };

@@ -4,23 +4,25 @@ const { Controller } = require('egg');
 
 class UserController extends Controller {
     async login() {
-        const { ctx } = this; // 从this获取service
+        const { ctx } = this;
+        const req = ctx.request.body
         const users = await ctx.model.User.find({
-            username: 'u',
-            password: 'uu'
+            username: req.username,
+            password: req.password
         });
-        if (users) {
-            console.log('找到了');
+        if (users.length) {
+            ctx.body = {
+                code: 200,
+                message: 'success',
+                data: null
+            };
         } else {
-            console.log('找不到');
+            ctx.body = {
+                code: 100,
+                message: '用户不存在',
+                data: null
+            }
         }
-
-        ctx.body = {
-            code: 0,
-            message: 'success',
-            data: 'lalalal'
-        };
     }
 }
-
 module.exports = UserController;
